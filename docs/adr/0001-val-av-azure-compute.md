@@ -3,7 +3,7 @@
 ## Metadata
 * **Datum:** 2026-05-04
 * **Status:** Föreslagen
-* **Beslutsfattare:** [Lägg till namn/Team]
+* **Beslutsfattare:** [Joco, Lisa, Robin, Liza ocg Rolf]
 * **Relaterat:** [Länk till ticket/issue/spike]
 
 ## Kontext
