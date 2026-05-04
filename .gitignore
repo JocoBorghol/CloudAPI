@@ -1,0 +1,19 @@
+# .NET-specifika mappar att ignorera
+[Bb]in/
+[Oo]bj/
+
+# Ignorera appsettings-filer enligt önskemål
+appsettings.json
+appsettings.*.json
+
+# Visual Studio och VS Code-filer
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS-specifika filer
+.DS_Store
+Thumbs.db
