@@ -1,30 +1,30 @@
-# ADR 0001: Val av Azure Container Apps för CloudAPI
+# ADR 0001: Val av Azure Container Apps fÃ¶r CloudAPI
 
 ## Metadata
 * **Datum:** 2026-05-04
-* **Status:** Föreslagen
-* **Beslutsfattare:** [Joco, Lisa, Robin, Liza ocg Rolf]
-* **Relaterat:** [Länk till ticket/issue/spike]
+* **Status:** FÃ¶reslagen
+* **Beslutsfattare:** [Joco, Lisa, Robin, Liza och Rolf]
+* **Relaterat:** [LÃ¤nk till ticket/issue/spike]
 
 ## Kontext
-Vårt uppdrag är att flytta ett äldre system till molnet. Systemet kommer att brytas ner till **3 fristående mikrotjänster**. Systemet har ett extremt trafikmönster och måste kunna **klara av tunga trafiktoppar runt löning**, för att därefter ha **nästan noll trafik på helgerna**. Detta kräver ett plattformsbeslut som kan hantera oregelbunden last på ett kostnadseffektivt sätt.
+VÃ¥rt uppdrag Ã¤r att flytta ett Ã¤ldre system till molnet. Systemet kommer att brytas ner till **3 fristÃ¥ende mikrotjÃ¤nster**. Systemet har ett extremt trafikmÃ¶nster och mÃ¥ste kunna **klara av tunga trafiktoppar runt lÃ¶ning**, fÃ¶r att dÃ¤refter ha **nÃ¤stan noll trafik pÃ¥ helgerna**. Detta krÃ¤ver ett plattformsbeslut som kan hantera oregelbunden last pÃ¥ ett kostnadseffektivt sÃ¤tt.
 
 ## Beslut
-Vi har beslutat att hosta våra mikrotjänster i **Azure Container Apps**.
+Vi har beslutat att hosta vÃ¥ra mikrotjÃ¤nster i **Azure Container Apps**.
 
-## Alternativ som utvärderades
+## Alternativ som utvÃ¤rderades
 
 **1. Azure Container Apps (Valt alternativ)**
-* **Fördelar:** Plattformen är serverlös, skräddarsydd för mikrotjänster och har inbyggd händelsestyrd **autoscale**. Den kan dynamiskt skala upp vid löning och automatiskt **skala ner till noll instanser ("scale-to-zero")** på helgerna, vilket sparar pengar när det inte finns någon trafik.
-* **Nackdelar/Konsekvenser:** Kräver att vi paketerar applikationerna i **Docker-containrar**, vilket innebär att teamet måste ha eller bygga upp **Docker-kunskap**.
+* **FÃ¶rdelar:** Plattformen Ã¤r serverlÃ¶s, skrÃ¤ddarsydd fÃ¶r mikrotjÃ¤nster och har inbyggd hÃ¤ndelsestyrd **autoscale**. Den kan dynamiskt skala upp vid lÃ¶ning och automatiskt **skala ner till noll instanser ("scale-to-zero")** pÃ¥ helgerna, vilket sparar pengar nÃ¤r det inte finns nÃ¥gon trafik.
+* **Nackdelar/Konsekvenser:** KrÃ¤ver att vi paketerar applikationerna i **Docker-containrar**, vilket innebÃ¤r att teamet mÃ¥ste ha eller bygga upp **Docker-kunskap**.
 
 **2. Azure App Service (Bortvalt alternativ)**
-* **Fördelar:** Fantastiskt enkelt att komma igång med.
-* **Nackdelar:** Passar bäst för **traditionella och monolitiska webbapplikationer**. Matchar inte vårt behov av mikrotjänster lika bra och saknar Container Apps optimerade modell för att skala ner helt till noll.
+* **FÃ¶rdelar:** Fantastiskt enkelt att komma igÃ¥ng med.
+* **Nackdelar:** Passar bÃ¤st fÃ¶r **traditionella och monolitiska webbapplikationer**. Matchar inte vÃ¥rt behov av mikrotjÃ¤nster lika bra och saknar Container Apps optimerade modell fÃ¶r att skala ner helt till noll.
 
 ## Konsekvenser
-* **Drift & Utveckling:** Vi behöver anpassa vår CI/CD-pipeline för att bygga och tagga images till ett container registry. Vi slipper dock hantera den underliggande komplexiteten av att orkestrera ett helt Kubernetes-kluster själva, då Microsoft sköter detta bakom kulisserna.
-* **Kompetens:** Inlärningskurva för teamet gällande containerisering.
+* **Drift & Utveckling:** Vi behÃ¶ver anpassa vÃ¥r CI/CD-pipeline fÃ¶r att bygga och tagga images till ett container registry. Vi slipper dock hantera den underliggande komplexiteten av att orkestrera ett helt Kubernetes-kluster sjÃ¤lva, dÃ¥ Microsoft skÃ¶ter detta bakom kulisserna.
+* **Kompetens:** InlÃ¤rningskurva fÃ¶r teamet gÃ¤llande containerisering.
 
-## Uppföljning
-* Vi kommer att kontinuerligt utvärdera beslutet och mäta prestanda, incidenter och kostnader med hjälp av **observability** (loggar).
+## UppfÃ¶ljning
+* Vi kommer att kontinuerligt utvÃ¤rdera beslutet och mÃ¤ta prestanda, incidenter och kostnader med hjÃ¤lp av **observability** (loggar).
